@@ -700,6 +700,7 @@ Post [[#22]](#p22) shared an excerpt, "Formal Methods: The Road Not Taken", from
 | [`material/LamportMutex.pdf`](material/LamportMutex.pdf) | Pretty-print of `LamportMutex.tla` from [tlaplus/Examples](https://github.com/tlaplus/Examples) (MIT) [[#91]](#p91) |
 | [`material/tla-modules-reference.pdf`](material/tla-modules-reference.pdf) | Pretty-print of the TLA+ standard and community modules from [tlaplus](https://github.com/tlaplus) (MIT) [[#84]](#p84) |
 | [`images/`](images/) | Illustrations from the posts |
+| [`source/FormalSystems.txt`](source/FormalSystems.txt) | The original text of all 101 posts, as collected from LinkedIn. Attachment names refer to the original upload filenames. |
 
 ---
 

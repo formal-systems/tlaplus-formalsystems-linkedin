@@ -1,0 +1,1047 @@
+FormalSystems.txt
+At Formal Systems, we harden business and software workflows by uncovering and documenting their state machines, and translating business and technical intents into invariants we verify via TLA+.
+
+Ovidiu C. Marcu
+Meet me at Luxembourg Venture Days, Oct 14-15 | Founder @ Formal Systems | Own your state machines | Formal Verification & TLA+ | PhD CS
+
+About
+Own your state machines. Preserve intent. Safety. Liveness. TLA+. That’s what we help you do at Formal Systems.
+
+I'm a Veriborg. I'm here to inspire future Veriborgs through my posts while advocating for TLA+ and other formal tools. 
+
+veriborg (n.) - a human-AI hybrid software engineer whose main reflexes include type checking; specifiable, verifiable, and refinable coding; and having the grit to preserve intent and trust through applying formal methods (i.e. the latest edition of a cyborg software engineer); other critical reflexes: may refuse to merge to main until the proof obligations are discharged.
+
+Enjoy,
+Ovidiu Marcu
+
+Hype scales code. Rigor scales trust. Choose where you want to spend your tokens.
+
+Services
+Harden systems by syncing concurrent/distributed workflows and code with TLA+ specifications. Available at: ovidiu.marcu@formalstream.lu
+Formal Systems builds your systems' formal methods foundation. Think consensus, payment flows, replication, failover, etc. 
+Services: TLA+ platform setup, workshops to model your systems, and training your engineers for the rest: clarify intent, defining properties, and writing invariants.
+
+Training
+
+Software Testing
+
+IT Consulting
+
+Engineering Design
+
+Posts
+1.
+GoF design patterns and the art of programming are losing value and being replaced by vericoding, state machines, specifiable, and refinable code patterns. The patterns of the next decade will be specification and refinement patterns, and teaching AI to generate or sync code to them well will be the new art of programming. E.g., one TLA+ specification compresses a lot of distributed code, with composition being key, while for the rest of the code maybe we have it lean.
+
+2.
+Hackannotate your specs with INSTANCE
+
+Also a possible view of veriborgcom - search, specs, model, run, pretty, edit, console
+
+Looking to cut more than add. Run local, soon cloud.
+
+Need your feedback.
+Image: 1790655348743.jpeg
+
+3.
+Probabilistic Concurrent Reasoning in Outcome Logic:Independence, Conditioning, and Invariants
+
+The pcOL paper got a Distinguished Paper Award at POPL 2026!
+
+Paper: 3776651.pdf
+
+4.
+I don’t understand. What is this symbol?
+Where do you start understanding?
+
+You draw. You write. You visualize. You attach significance. You just get used to symbols.
+
+Every day. Make them part of your life. Remove fear. Soon enough you just get used to.
+
+Here's what I am starting to train my 6- and 9-year-old children on. How? Funny prints, funny drawing, funny stories on the walls.
+
+About a dozen cover most TLA+ invariants, and another dozen cover type invariants.
+Image: 1790540612573.jpeg
+
+5.
+State machines are everywhere. What is a state machine? A definition by Leslie Lamport:
+
+"An execution is represented as a behavior.
+A behavior is a sequence of states.
+We want to specify all possible behaviors of a system.
+How do we do that?
+We can abstract them all as state machines."
+
+At Formal Systems, we harden business and software workflows by uncovering and documenting their state machines, and translating business and technical intents into invariants we verify via TLA+.
+
+Own your state machines.
+Image: 1789995329988.jpeg
+
+6.
+Image: 1790496440708.jpeg
+
+7.
+Curious about TLA+ but not sure where to begin? This one-pager collects the three resources I keep recommending: Lamport's video course for the foundations, Paxos derived step by step, and a hands-on workshop where every git commit teaches one new idea.
+
+We introduce the essentials in 3 days at your site in Europe/USA, alongside tooling setup to manage one million+ TLA+ specifications, TLAPS proofs, and a distributed setup for both model checking and proof validation. Contact: ovidiu.marcu@formalstream.lu
+Paper: 1790334621434.pdf
+
+8.
+A new industrial use case for TLA+ is to help provide strong, correct, and understandable system implementations of The Open Group's Open Process Automation Standard (O-PAS). O-PAS defines an open, interoperable, and secure architecture for industrial process automation systems. TLA+ is already used by Intel, Amazon, Microsoft, MongoDB, Oracle, and Google (https://lnkd.in/evbCh3nA) - and even in the Linux kernel (https://lnkd.in/eKyXH_ND). Major consensus protocols, Raft and Paxos, are proved to be correct due to TLA+.
+
+Two critical O-PAS applications:
+
+A. High availability: the control system keeps performing its control function despite component failures. 
+
+O-PAS moves control from monolithic, vendor-proprietary redundant pairs toward distributed control nodes and portable control applications, so redundancy increasingly looks like a distributed systems problem: leader election, state replication over a network, failure detection under network partitions. These are exactly the protocols TLA+ was built to verify.
+
+B. System orchestration: the Open Process Automation Forum plans to base O-PAS orchestration on the OASIS Topology and Orchestration Specification for Cloud Applications (TOSCA) 2.0 (https://lnkd.in/e5t7cHyz). 
+
+TOSCA aspires to be for industrial orchestration what SQL is for databases: a declarative, vendor-neutral language in which one states the desired result - a service topology (components, relationships, lifecycle operations) rather than a result set - and leaves it to an engine, the orchestrator rather than the query planner, to determine how to achieve it. A TOSCA orchestrator is therefore a distributed reconciliation system: it must drive the running system toward the declared topology while components fail, operations run concurrently, and updates arrive mid-deployment. TLA+ can specify and verify these processes, ensuring that deployments respect dependency ordering, converge to that topology, and handle failures and concurrent operations without deadlock or inconsistent state.
+
+Open automation runs on state machines all the way down. TLA+ is how we reason about state machines.
+
+9.
+Formal Specifications are infinite. Verification is finite. Keep them separate.
+hashtag#tlaPlus101
+In TLA+, specs naturally use infinite objects — all sequences, all natural numbers. Model Checking needs everything finite.
+
+The tempting shortcut? Hardcode bounds into the spec. But then your spec describes your computer's memory, not your system.
+
+TLA+ offers a cleaner way — three layers:
+
+𝗟𝗮𝘆𝗲𝗿 𝟭: 𝗦𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 (Simple.tla)
+Pure mathematics. Uses Seq, Nat, STRING freely. Valid for theorem proving (TLAPS). No compromises. Expresses the full, infinite intent of the system.
+
+𝗟𝗮𝘆𝗲𝗿 𝟮: 𝗠𝗖 𝗔𝗱𝗮𝗽𝘁𝗲𝗿 (MCSimple.tla)
+Defines finite approximations:
+→ MCSeq(S) == BoundedSeq(S, 3)
+→ MCNat == 0..10
+Contains NO specification logic.
+
+𝗟𝗮𝘆𝗲𝗿 𝟯: 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 (MCSimple.cfg)
+Wires approximations to the spec:
+→ Seq ← MCSeq
+→ Nat ← MCNat
+Also sets INVARIANT, PROPERTY, CONSTANTS.
+
+The spec is never touched. Bugs found are real bugs. Absence of bugs is verified up to your chosen bound.
+
+hashtag#TLAplus hashtag#FormalMethods hashtag#SoftwareEngineering hashtag#ModelChecking hashtag#SystemDesign
+
+10.
+49 years ago "This paper introduced the concepts of safety and liveness as the proper generalizations of partial correctness and termination to concurrent programs."
+
+https://lamport.azurewebsites.net/pubs/pubs.html#proving
+
+Enjoy this 2024 retrospective of Proving the Correctness of Multiprocess Programs by Lamport. hashtag#tlaplus
+
+Paper:retrospective.pdf
+
+11.
+On trace validation challenges:
+
+Setting the right atomic boundaries is the most important aspect of trace validation.
+
+"Granularity of actions in the consensus spec should align with the granularity of events in the traces" @Smart casual verification 
+
+Potential issues:
+
+The model might permit behaviors the implementation can't produce.
+
+The model might fail to explain behaviors the implementation does produce.
+
+Smart Casual Verification of the Confidential Consortium Framework
+https://www.usenix.org/system/files/nsdi25-howard.pdf
+
+Model Checking Guided Testing for Distributed Systems
+https://dl.acm.org/doi/epdf/10.1145/3552326.3587442
+Paper:3552326.3587442.pdf
+
+12.
+Can you read these TLA+ invariants? That's the future job of system software architects. These five safety Raft consensus invariants should hold true for a standard implementation. Once code and spec are in sync, this is where you spend time: define and make sure intents are properly expressed as invariants.
+Image: 1789827204209.jpeg
+
+13.
+Learning how to read and accept code, math, and formal specs requires both new teaching and mindset skills. E.g., you can learn how to write TLA+ from a myriad of free books, tutorials, and examples (in some dose), but reading to review and accept TLA+ snippets is the new skill to have in the AI world. It's also unclear how to optimize for proofreading of code + specs. These present new opportunities to grow for software people.
+
+14.
+FYI (shared over past year) TLA+ ideas are available on this profile plus references for further study. I am looking to organise more content soon on veriborg.com My main insight: a system solving a real problem should serve well its users. Feasible now to own your system’s state machines through formal specifications to avoid system bugs.
+"Like almost all the programs we use, [Your Favorite Program] is completely bug-free—since a program can have bugs only if there is some specification of what it’s supposed to do." Leslie Lamport
+
+15.
+A few of you asked about Formal Systems' web business page; here it is, this profile: https://lnkd.in/eHrVnriR. We are unifying and optimizing for direct customer communications. We appreciate LinkedIn security and directly promote TLA+ and other formal tools for human and business engineering benefits. Own your state machines.
+
+16.
+Thank you Boris Cherny for your feedback. Would be great for Anthropic to join the @TLA+ Foundation and support and extend the core team. Lean and TLA+ can together cover most software systems on Earth and Space. Disclaimer: I am not part of the TLA+ Foundation.
+
+17.
+Thank you to the TLA+ contributors. Follow them:
+Markus Kuppe is daily improving the TLA+ tools among a few core contributors. Stephan Merz also for TLAPS
+Igor Konnov also for Apalache
+
+https://foundation.tlapl.us/ 
+
+Many free TLA+ resources at https://lamport.azurewebsites.net/tla/tla.html
+
+18.
+A veriborg using TLA+ & Lean. Understanding your spec remains key, AI helps.
+View Boris Cherny’s  graphic link
+Boris ChernyBoris Cherny
+   • FollowingVerified • Following
+Head of Applications @Anthropic, created Claude CodeHead of Applications @Anthropic, created Claude Code
+
+I used Opus 5.5 to formally verify the Claude Agent SDK using Lean. A couple short prompts = 16 PRs fixing various bugs and race conditions. Video attached.
+
+TLA+ also works well. I sometimes combine Lean and TLA+ to look for issues around data flow, concurrency, and state mgmt.
+
+I don't know either language well, but Claude is excellent at both. This approach is super useful for formally modeling your code and finding bugs that a human probably wouldn't have spotted.
+
+Is formal verification the future of coding (or at least, bug finding)?
+
+19.
+Formal System's Harden Factory algorithm for solving system bugs :
+
+(Agents support loops, composition-based.)
+
+loop: hashtag#discover networks of state machines and their safety invariants
+ find a way to sync code with TLA+ specs {1}
+ once synced, minimize verification strategy effort (spec and code say the same thing)
+ find a way to efficiently model check as much state space of those specs {2}
+ [special case: proofs for critical paths]
+ [special case: liveness] 
+ check invariants ux interface {3}
+ when invariant fails, update code, update spec {4}
+
+When the discovery loop is done:
+loop:
+ optimize {1} {2} {3} {4}
+
+Refactor loop:
+ similar state machines -> refactor, reuse
+
+Goal 1 discover state machines towards zero bugs
+Goal 2 high spec coverage
+Goal 3 high test coverage (spec-generated)
+Goal 4 Reduce AI usage
+
+20.
+Thank you all for your feedback. Going forward, my main goal is to help software engineers adopt formal methods and work alongside AI, with a primary focus on TLA+. Ultimately, safe systems should benefit humans first.
+
+21.
+To drastically reduce AI token usage when working on any system implementing networks of state machines, I use TLA+. Additionally, the source code is now extremely well documented and easier to change. There's always a tradeoff, i.e., model checking increases CPU utilization. Moreover, concurrent/distributed/state machine design patterns appear and can be reused. No more throwing code while building reusable components, as the TLA+ specifications are immortal. I am working on hardening AI harness tools with TLA+ concepts (e.g. see hashtag#VCagents https://lnkd.in/p/eG8PNy9Y). I increasingly see my job as reviewing code and TLA+ specs to ensure they are in sync, and to ensure the safety invariants and liveness properties. I'm looking to integrate with a local open source AI model; appreciate any suggestions.
+on
+Introducing the hashtag#VCagent term. Agentic systems should treat composition as a first-class verification problem. (based on) For composition: refer to Lamport's Specifiying Systems, chapter Composing Specifications https://lnkd.in/e4ydAF7p.
+
+VCagent (n.; from verification + composition + agent; pl. VCagents) - an autonomous or semi-autonomous agent engineered to be specified, verified, and refined both as an individual component and as a member of a larger agentic system; whose main reflexes include declaring the state and actions it owns, the changes it may observe but does not cause, the behavior it attributes to other agents or the environment, and the global rules it leaves to the orchestrator; publishing explicit assumptions and guarantees so that interface compatibility and fault responsibility can be checked; and requiring safety, liveness, fairness, and mission satisfaction to be verified over the complete composition, especially when state is shared or actions are jointly enabled (i.e., an agent that treats composition as a first-class verification object and carries its composition obligations with it; the compositional-verification counterpart of the autonomous agent); other critical reflexes: recognizes that conjunction preserves stated safety constraints but does not by itself establish compatible assumptions, accountable ownership, non-vacuous progress, or mission success; searches the composed system for deadlock, circular waiting, Zeno behavior, and actions that are locally enabled but globally blocked; requires renewed evidence after material changes to membership, authority, interfaces, tools, assumptions, or operating conditions; and may refuse deployment until both its local proof obligations and the composition-level obligations are discharged.
+Paper: vcagents.pdf
+
+22.
+1789975177479.jpeg
+ProblemSpecLanguage.pdf
+
+23.
+Verdi Rocq versus TLA+ (a pretty printed example)
+1789903730655.pdf
+
+24.
+Software factories? Nope, no magic button.
+
+« As Brian Cantwell Smith explained in The Limits of Correctness (1985), a proof only establishes that software satisfies stated requirements under given environmental assumptions. It cannot prove that those requirements capture everything users want, or that those assumptions cover every real-world deployment scenario.
+
+Because software must serve human intent, humans retain final authority over interpreting the evidence and deciding what behavior is acceptable. »
+Paper: 2609.12039v1.pdf
+
+25.
+<100$/month my AI costs over past year, thanks TLA+
+I expect (formal) Spec Coverage to be soon a better and much more expected metric than (now AI-generated) Test Coverage toward ensuring greater software. And pretty much of the AI-based test coverage will be replaced by Spec-based (generated) test coverage. This should lead to extremely efficient (toward no bugs due to feature code updates) systems and increasingly less AI usage at the cost of leveraging veriborgs. Software engineers moving toward formal methods and becoming veriborgs, that’s the new software decade.
+
+26.
+Coding is not dead. Coding is specformed.
+My first intuition, just after ChatGPT launched, was that coding would soon be much, much cheaper. My second thought came pretty fast: the time to build a verification strategy was yesterday. Soon enough, more challenges appeared, such as applying a formal tool like TLA+ to some system or keeping specs and code in sync as they both evolve. Today, I observe that building a formalized system costs (as time) about twice what coding alone did back then. Well, plus some tokens, and extra CPU for verification, perhaps additional code-spec sync verification. The clear win: hardened systems, less bugs. AI support helps but is not sufficient. The mechanical 80-90% of code-to-spec synchronization can be automated (via annotations and tooling). The real bottleneck is the final part, where systems engineers must judge intent to validate specs, define properties, write invariants, support proofs when necessary, clear abstraction and retrain for the tool that just became affordable. Specs harden system code and shape it to be simpler, better, correct. You still have to understand both code and specs, but the job is more fun than ever. Coming soon: veriborg dot com.
+
+27.
+I like this approach. “Developers annotate Rust source code directly with preconditions and postconditions using Rust-like syntax, enabling fast feedback loops (under one second) and allowing AI agents to assist in proof generation.”
+Annotations are the way.
+Article: https://www.amazon.science/blog/developing-provably-correct-rust-code-with-verus
+Developing provably correct Rust code with Verus - Amazon Science.html
+
+28.
+Resilient and profitable companies share a hidden architecture: they build on a formal methods-based foundation. For AI-future companies, this is the critical hardening topic—and a secret to survival they are looking to discover how to master. Unfortunately, AI people rarely consider formal methods. Harnessing lacks formal hardening and burns tokens for more bugs.
+
+But it is a lot to digest. A tool? A cultural change? A risky bet? An expensive strategy? Cost vs. benefits in the short/long term?
+
+Where do you start? Formal platforms? Formal people?
+
+The companies that figure this out will own the future, and I am mapping this exact path.
+
+I’d love to hear from this network: Setting aside the human element for a moment (hiring, training, culture shifts)—what are the biggest technical hurdles you are facing right now when trying to harden your systems?
+
+Is it integrating formal tools with existing CI/CD pipelines? Dealing with state explosion? Bridging the gap between AI agents and verifiable logic?
+
+Let me know what’s blocking you at the platform level below.
+
+29.
+Open to “verifiability” => there is no better time to switch to open source AI models and build the hardening of the harnessing through formal methods.
+Image: 1789292984795.jpeg
+
+30.
+Writing sequential code is not easy; babysitting AI can help, and you may even extract such code from some formal spec. But then you want concurrency and distributed execution, and things start to become complicaTLA+ed.
+
+31.
+An ansatz is an educated guess at the form of a (partial) solution, made before it is validated. The TLA+ TLC TLAPS tools help by checking the guess produced by specification extraction (skill-based) tools.
+Ansatze such tools can help automate are: the type invariant, actions and their guards (enabling conditions), model checking configs, composition (partially). The hard ones, which stay with the human: which fields are specification visible (abstraction), the grain of atomicity, safety invariants and their inductive strengthening (partially), refinement mappings, and fairness.
+We learn that AI agents can borrow ansatze from our prompts or the literature and possibly speed up human thought verification. Veriborgs produce ansatze. Tools help.
+
+32.
+TLA+ specs pay off if you can read their invariants/properties. Here we aggregate all invariants from TLA+/TLAPS github examples and then generate a hands-on TLA+ syntax course runnable with TLC - check invariants_syntax.tla. That's a first tutorial you can overview rapidly. 
+https://github.com/granular-storage/tlaplus-invariants
+
+33.
+It's tempting to go all in on first writing the design as a formal specification and then letting some program generate code from that, to get your perfect code that respects your invariants - but we know that is not happening in most scenarios -> $.
+Design first, implement later works when you invent a new consensus algorithm or similar.
+A lot of code has already been written and waits for new features, while the specs are in developers' heads. A lot of code will be generated from a vibed spec. And here a lot of testing runs to validate that code respects safety and liveness <- $.
+How to trust your new code? Your new features? With less $? 
+One way is to generate formal specs from existing code.
+TLA+ can deal with all sorts of state machines, including workflows, and their composition. Spec verification for code validation (model checking/testing, trace validation, proofs) will provide and preserve that confidence.
+Are Sync Code=Spec & Check proof the buttons we want to press to get the trust?
+Image: 1788595272341.jpeg
+
+34.
+TLA+ tools can help a lot. Sonnet is also fast to explain and help you learn. Claude in chrome is quite a nice surprise. On top are a few shortcuts for lazy veriborgs :-)
+1788524235196.jpeg
+
+35.
+Introducing the hashtag#VCagent term. Agentic systems should treat composition as a first-class verification problem. (based on) For composition: refer to Lamport's Specifiying Systems, chapter Composing Specifications https://lnkd.in/e4ydAF7p.
+
+VCagent (n.; from verification + composition + agent; pl. VCagents) - an autonomous or semi-autonomous agent engineered to be specified, verified, and refined both as an individual component and as a member of a larger agentic system; whose main reflexes include declaring the state and actions it owns, the changes it may observe but does not cause, the behavior it attributes to other agents or the environment, and the global rules it leaves to the orchestrator; publishing explicit assumptions and guarantees so that interface compatibility and fault responsibility can be checked; and requiring safety, liveness, fairness, and mission satisfaction to be verified over the complete composition, especially when state is shared or actions are jointly enabled (i.e., an agent that treats composition as a first-class verification object and carries its composition obligations with it; the compositional-verification counterpart of the autonomous agent); other critical reflexes: recognizes that conjunction preserves stated safety constraints but does not by itself establish compatible assumptions, accountable ownership, non-vacuous progress, or mission success; searches the composed system for deadlock, circular waiting, Zeno behavior, and actions that are locally enabled but globally blocked; requires renewed evidence after material changes to membership, authority, interfaces, tools, assumptions, or operating conditions; and may refuse deployment until both its local proof obligations and the composition-level obligations are discharged.
+
+36.
+Math, coding, and formal verification are the big AI winners. Human assistance is now perhaps half direction, half understanding and slowly? moving toward less guidance.
+
+37.
+Quint versus TLA+
+PlusCal versus TLA+
+Lean/Veil versus TLA+
+
+These comparisons are not relevant and are all wrong. What’s important is your grit to try one. Next consideration is how you situate around formal methods. Get around formal methods people. Read, write, ask. Get out of the programming language rabbit hole. Put yourself also in formal shoes.
+Image: 1787899157387.jpeg
+
+38.
+The new tradeoff: verifying formal intent versus code generation and test harnessing.
+It seems that no major AI coding provider promotes formal methods, eg Bun's Rust rewrite is our perfect example, since declaring and verifying intent is expensive in both human time and CPU usage, removing the productivity story while demanding a veriborg attitude. Open is expensive not in tokens but in human and CPU usage.
+The irony is that AI models make formal tools cheap enough to use, and that will come back to bite AI providers because the bill shifts from tokens to CPU and lost productivity. This shift is not obvious as you have to wait for verification to finish and during that time there is no AI usage for this project.
+My past 4 years experience have taught me that formal engineering is now the major cost of producing majority of good software.
+
+39.
+Sets. Computer science. TLA+. Tools to be written. Infinity.
+
+40.
+I know that paper. TypeOK and you will probably be fine. Give me both Lean+TLA+ (Veil?) and I will be happy.
+Article: https://lawrencecpaulson.github.io/2026/08/21/Lamport.html
+How I came to write THAT paper with Leslie Lamport.html
+
+41.
+Do not fight your agent, do not wtf AI, just add these words into your planning prompt “Explore [problem blablablah] . Apply TLA+ state machines”. AI will get so scared and finally will start to respect your design.
+
+42.
+Yesterday, I went through Ryan Peterman's interview with Anders Hejlsberg, the creator of TypeScript and C#, and found that "shared memory concurrency" is Anders's most technically challenging work (mine too); I also found that the TypeScript compiler got 10x faster through a rewrite in Go.
+I took the challenge and ran my TLA+ state machine investigator over typescript-go, and in under an hour found a couple of potential bugs - a lost delete and a deadlock (typescript-go is not yet a replacement of TypeScript).
+I run such sprint challenges weekly to learn about other frameworks while practicing my TLA+ reading skills. That's part of the fun of working with TLA+.
+Unfortunately, many great open-source frameworks do not document their (concurrent) state machines. It is a lot of human verification work (but much less now with AI). And potentially a source of many jobs for future hashtag#veriborg engineers.
+How to solve the "shared memory concurrency" challenge? Be lazy, do not try to memorize state machine interactions. Write them down to TLA+. Let the model checker verify your invariants. Your intent now archived and easy to remember. Once all green, AI writes the fix.
+
+43.
+Thank you. When AI is done what remains to be done is preserving safety+liveness intent and here TLA+ is crashing all formal tools. For you: the cost of doing that is one human making sure invariants and properties respect the intent so systems can be securely deployed. I am not done here but happy with progress, keep in mind: state machines are everywhere not only in consensus systems; your systems grow on top of trillion of them, state machines deserve at least be documented. start with TLA+ toward hashtag#veriborg safety grit
+
+44.
+2020-era software engineering is largely evolving. Welcome, Veriborgs.
+veriborg (n.) - a human-AI hybrid software engineer whose main reflexes include type checking; specifiable, verifiable, and refinable coding; and having the grit to preserve intent and trust through applying formal methods (i.e. the latest edition of a cyborg software engineer); other critical reflexes: may refuse to merge to main until the proof obligations are discharged.
+
+45.
+Excellent review and feedback to the TLA+ community on code-spec SOTA with agents. My take: who owns those invariants? composition is a hard problem. Most critical: without abstraction, model checking is worth some bugs but critical ones will escape. Finally, where we are: Hard to derive intent from code without humans in the loop.
+Article: Specula_ Scaling formal specifications for autonomous model checking of system code.html
+
+46.
+I want to learn how ai agents deal with “the concept of design continuums” for [SomeSystemTopic] I do not have much info on this subject. Linkedin please help@ (here an example Learning Key-Value Store Design)
+Paper: 1907.05443v1.pdf
+
+47.
+“The new constraint is preserving intent and trust”
+
+48.
+If you’re not “reading” your code, one of the following is true:
+1. your code is generated (perhaps from a formal methods language or tool-based)
+2. your code is a toy
+3. you will be doomed unless you are chuck norris.
+
+49.
+I believe system design researchers have to eventually have a conversation with Lamport’s 
+
+Composition: A Way to Make Proofs Harder
+
+also
+
+“We are perhaps missing a language for system design centered on abstraction.” => why not TLA+?
+
+The AI dream indeed brought formal methods closer to the masses but composition kills the dream of having everything for free :-)
+Article: The Bottlenecks for AI-Driven System Design_ why Principal Engineers are not (yet) obsolete. _ mahesh’s blog.html
+
+50.
+State of (what's missing in) AI, due to JD & team.
+
+Discovery Loop plans to automate scientific and engineering research through a unified architecture of artificial intelligence and distributed systems - literally: Dean and Ghemawat are the distributed-systems half; Le and Vinyals, the AI half. I believe they clearly recognize that reproducible scientific & engineering workflows are a hard engineering problem.
+
+Reproducibility in automated science starts with enforcing deterministic state transitions over non-deterministic physical and AI operations. The non-determinism you can't remove is the hard part. Without state machines, an AI discovery platform is just a fragile shell script driving a chaotic lab.
+
+However, humans are mostly responsible for designing scientific & engineering workflows - and I would add that business workflows are a simplified case built on top of them.
+
+Just think about one million researchers describing state machines in TLA+ to later bootstrap an advanced AI that can do the same at an orders-of-magnitude larger scale.
+
+So, for now, there's no AI without humans in the loop.
+
+TLA+ is a generic state machine formal system.
+
+51.
+Coding is solved, they say. Correct concurrent and distributed code remains difficult.
+I believe that specifiable, refinable and verifiable concurrent/distributed system code can help us solve more problems, and solve them better.
+A lot of code already exists that partially solves such problems. Most of this code is not properly validated: existing tests verify some behaviors, but not all. A lot of new code will be written. Ideally, we want to converge on code that is specifiable, refinable and verifiable. See e.g. https://lnkd.in/e-zWTAHP
+
+I chose TLA+ to help with these challenges. Here's my code-to-spec sync methodology, a general approach that leads to a better coding experience and higher software quality.
+Rigorously solving a concurrent/distributed problem:
+
+Ideally, an algorithm already exists and has been formally specified. If not, write the algorithm's TLA+ specification, then work towards obtaining its TLAPS proof. The inductive invariants help you write correct code and better tests.
+Once you have a verified spec, write the code according to specifiable principles, i.e., explicit state, identifiable atomic steps, no hidden nondeterminism.
+When code already exists that you think solves the problem, start from the proven spec and extend it towards syncing the concurrent parts of your code. You need a methodology to sync code to spec, and TLA+ and the literature provide the abstractions for it: variables, actions, trace validation and so on. Keep in mind that the granularity of actions in the spec should align with the granularity of events in the traces - see e.g. https://lnkd.in/eD2HMtEv
+You then prove refinement between the two specs. Alternatively, write a new proof.
+You also end up better understanding the assumptions and behaviors you expect from your code. AI can help extract invariants from those more rapidly.
+
+The surprise is where AI helps: not writing the code, but building the spec and the proof around it. At every step, research the problem and extract the examples and papers that can feed the AI's context.
+
+The challenge is to learn to think and read like a researcher. That takes time. Start now. See Lamport's TLA+.
+
+52.
+New: tool to chase bugs at AI speed
+code-spec sync got a graph context for my AI sessions freeing tokens and optimizing my memory
+Image: 1785665890489.jpeg
+
+53.
+AI does not help abstract the intent behind the instant.
+Spec and code are in sync when you can say which part of one answers to which part of the other. That correspondence is between one atomic action and the instant in the code where that action becomes visible.
+Data is the easy half. The instant is the hard half. A specification action happens all at once. The code realizing it does not, and every intermediate state it passes through is something another thread can see. Sync holds only while you can still say where, in that sequence, the action took effect.
+The instant exists in every correct concurrent implementation. It is almost never written down. It lives in the head of whoever wrote the loop, and it leaves when they do.
+TLA+ is where it can be written down instead. Time-travel the specification - backward with history variables, forward with prophecy - and the instant becomes a variable.
+
+54.
+What tool can help you reason about the past (history variables), stop the time (stuttering), the future (prophecy variables), and across multiple possible system behaviors (hyperproperties)? And why is each relevant?
+
+Background: A system is a formula over behaviors — a behavior is one possible run, a sequence of states. One system implements (refines) another when every behavior it allows is also allowed by the other; proving this uses a refinement mapping, a rule that translates the implementation's state into the abstract spec's state.
+
+History variables: extra state added to a spec that records what has already happened, with no impact on system algorithm.
+Why relevant: properties often refer to past events the current state has forgotten. Helps to establish an invariant — a property true in every reachable state.
+
+Prophecy variables: extra state that guesses a future outcome now, and blocks the predicted step unless the guess proves correct. The guess ranges over all possibilities, so behavior is unchanged.
+Why relevant: sometimes a refinement mapping needs a value that isn't decided until later — a linearization point, a speculative result, which of several outcomes will occur. A history variable can't help (the fact is in the future). Prophecy pulls the future into current state so the mapping can read it.
+History and prophecy, plus stuttering — variables that add steps leaving every real variable unchanged — are together enough to prove any correct "implements" relation.
+
+Hyperproperties: a property of a set of runs rather than one, comparing several executions.
+Why relevant: some conditions can't be stated about a single run. Noninterference says "any two runs with the same public inputs give the same public outputs" — a claim about pairs. Self-composition runs k copies as one system and asserts the relation between them, turning the hyperproperty into an ordinary property checkable with the same tools.
+
+The answer is: TLA⁺, Lamport's Temporal Logic of Actions. TLA⁺ lets you reason along two axes: time within one run (past and future) and across many runs. All three cases above are checked by the same tools: TLA+, TLC, TLAPS.
+
+Syncing code to spec has a home in TLA+.
+
+55.
+A new industrial use case for TLA+ is to help provide strong, correct, and understandable system implementations of The Open Group's Open Process Automation Standard (O-PAS). O-PAS defines an open, interoperable, and secure architecture for industrial process automation systems. TLA+ is already used by Intel, Amazon, Microsoft, MongoDB, Oracle, and Google (https://lnkd.in/evbCh3nA) - and even in the Linux kernel (https://lnkd.in/eKyXH_ND). Major consensus protocols, Raft and Paxos, are proved to be correct due to TLA+.
+
+Two critical O-PAS applications:
+
+1. High availability: the control system keeps performing its control function despite component failures. 
+
+O-PAS moves control from monolithic, vendor-proprietary redundant pairs toward distributed control nodes and portable control applications, so redundancy increasingly looks like a distributed systems problem: leader election, state replication over a network, failure detection under network partitions. These are exactly the protocols TLA+ was built to verify.
+
+2. System orchestration: the Open Process Automation Forum plans to base O-PAS orchestration on the OASIS Topology and Orchestration Specification for Cloud Applications (TOSCA) 2.0 (https://lnkd.in/e5t7cHyz). 
+
+TOSCA aspires to be for industrial orchestration what SQL is for databases: a declarative, vendor-neutral language in which one states the desired result - a service topology (components, relationships, lifecycle operations) rather than a result set - and leaves it to an engine, the orchestrator rather than the query planner, to determine how to achieve it. A TOSCA orchestrator is therefore a distributed reconciliation system: it must drive the running system toward the declared topology while components fail, operations run concurrently, and updates arrive mid-deployment. TLA+ can specify and verify these processes, ensuring that deployments respect dependency ordering, converge to that topology, and handle failures and concurrent operations without deadlock or inconsistent state.
+
+Open automation runs on state machines all the way down. TLA+ is how we reason about state machines.
+
+56.
+New: the sixth sense of Raft consensus and a redefinition of the  Leader Completeness safety guarantee. Five guarantees tell you what Raft promises. The sixth is why those promises compose.
+Image: 1784322094434.jpeg
+
+57.
+Raft versus Paxos: understanding consensus, finally. Below the two major trade-offs:
+
+1. Immutable history instead of renumbering.
+ 
+Paxos re-votes an old value under each new ballot, so commits only ever count same-ballot votes. Raft never renumbers: an entry keeps its creation term forever, and Log Matching then makes (last index, last term) name a whole log — so one tip comparison (§5.4.1) at election time settles what Paxos must settle slot by slot. 
+The price in Raft: A. authoring term and commit term in Raft come apart ("committed in a given term" turns ambiguous — the CCF Raft spec bug); B. an entry can sit on a majority yet be uncommitted and erasable (Figure 8 — impossible in Paxos, where majorities are built from promise-carrying same-ballot votes); and C. old entries commit only indirectly, beneath a replicated own-term tip. The own-term commit rule (§5.4.2) pays all three prices at once — it rebuilds Paxos's ballot discipline without rewriting history.
+
+2: Self-healing convergence instead of monotonicity. 
+
+A Paxos vote is permanent; Raft lets leaders overwrite follower logs — that is the repair protocol, and it's why divergent logs converge with no separate recovery path. The price is that a follower's acceptance of an entry may later be truncated away, and the paper's safety argument covers this in a single step — §5.4.3, step 4: 
+"The voter still stored the entry when it voted for leaderU, since every intervening leader contained the entry (by assumption), leaders never remove entries, and followers only remove entries if they conflict with the leader." This was the hardest fact in our entire mechanized proof, and its difficulty is exactly the implementation difficulty it conceals: a committed entry's survival is not guaranteed by any single rule but by a chain of conditions holding across terms — the follower persisted its acceptance before acknowledging, refused every stale-term request afterward, and only ever truncated at the direction of a legitimate current-term leader whose own log, by the election restriction, already contained the entry. 
+Every link is a separate opportunity for an implementation shortcut (acking before fsync, skipping a term check, truncating optimistically) that leaves each rule looking locally correct while quietly breaking the one property the page never states: that an acknowledgment, once counted toward a commit, must remain true until every future election is forced to respect it.
+
+Conclusion: both relocate complexity from the running protocol into the safety argument. Raft may be easier to implement, not simpler, while the difficulty lives in the invariants, visible only under mechanization.
+
+A paper will follow. For raft see: https://raft.github.io/raft.pdf For Paxos see: https://lamport.azurewebsites.net/tla/paxos-algorithm.html
+
+58.
+Mastering TLA+ and TLAPS? Be like Argentina: stick with it till the very end :-)
+
+59.
+AI coding needs its Selinger moment i.e. the formal optimization that made SQL win. Until then, we're living in Bachman's 'Programmer as Navigator' world.
+Image: 1783244131632.jpeg
+
+60.
+The TLA+ loop is what you need
+Image: 1783108717201.png
+
+61.
+Research works have been published for free and we all benefit from. Leading with open intelligence is humans-first. open AI from Mistral
+https://mistral.ai/news/leanstral-1-5/
+
+62.
+At the end of the first pass, .. you may choose not to read further. There are a few how to read a research paper, for example https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf
+here's some more
+https://pages.cpsc.ucalgary.ca/~pwlfong/Pub/inroads2009.pdf
+https://www.owlnet.rice.edu/~cainproj/courses/HowToReadSciArticle.pdf
+https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf
+https://www2.cs.uh.edu/~gnawali/courses/cosc6377-s22/papers/rebeccaisaacs-how-papers-2021.pdf
+https://www.usenix.org/conferences/author-resources/how-and-how-not-write-good-systems-paper
+https://people.inf.ethz.ch/troscoe/pubs/review-writing.pdf
+
+63.
+Always test/verify one level deeper
+
+Replace « measure » with test/verify and replace « performance » with safety/liveness and you get the same great framework of ideas
+Article: https://cacm.acm.org/research/always-measure-one-level-deeper/
+Always Measure One Level Deeper – Communications of the ACM.html
+
+64.
+Fixed in CCF https://github.com/microsoft/CCF/pull/7970
+Please share this with communities building on Raft consensus - maybe they rely on leader completeness invariant and I believe this can clarify one important aspect of Raft consensus. https://github.com/granular-storage/RaftFix/blob/main/paper.pdf The repo contains more details.
+
+65.
+No AI produces hashtag#Specifiable and hashtag#Refinable code.
+
+Discipline at design time (specifiable) yields a verification strategy at build time (refinable).
+
+A protocol whose specification has been proved correct can guide the implementation towards code that is both specifiable and refinable. Specifiable, because each operation maps to a single specification step. Refinable, because that structure lets us use refinement as the verification strategy ie showing the code's specification refines the protocol's.
+
+see Lamport's "Hiding, Refinement, and Auxiliary Variables": https://lamport.azurewebsites.net/tla/hiding-and-refinement.pdf
+
+66.
+Raft TLA+ proof helps find a bug in Microsoft Confidential Consortium Framework's specification. We provide a fix. We believe the core CCF implementation is not impacted.
+
+We also explain the most sublime part of NuRaft that leads to the understandability of the protocol: Leader Completeness ("if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms") is the guarantee that once an entry is committed, every future leader already has it.
+Article https://github.com/granular-storage/RaftFix
+
+67.
+We have built a complete, mechanically-checkable proof of the 5 safety properties of the Raft consensus algorithm, expressed in TLA+ and discharged with the TLA+ Proof System 1.6 pre release.
+
+All 37255 obligations proved. 0 PROOF OMITTED leaves. 29600 lines of proof development code only. Whoohaa
+
+The raft spec required a few additional history variables. https://github.com/ongardie/raft.tla
+
+Raft already has a strong proof in Verdi/Coq (linearizability!) - see Planning for change in a formal verification of the raft consensus protocol.
+There seems to be no Raft proof in TLAPS 
+Image: 1781758648234.jpeg
+
+Looks like very nice work :) The paper in the link below includes a TLAPS proof for the MongoRaftReconfig protocol, a high level version of Raft with reconfigurations
+
+https://dl.acm.org/doi/10.1145/3497775.3503688
+Yes thanks Ian indeed that captures a lot and a good example to learn from; here is the proof source code for your Mongo protocol https://zenodo.org/records/5768484 I do not focus on reconfigurations but on vanilla Raft's safety props, see also Diego Ongaro's PhD thesis (there an informal proof but not translated to TLAPS).
+
+68.
+"TLA+ does not hide the complexity of a system by using built-in data types; as we will see in Section 4, every value is just a set." More at On the logic of TLA+ by Stephan Merz
+ https://lnkd.in/e7p9nJ-e Paper: admin,+1319.pdf
+
+Note to the LinkedIn team: please add a star the TLAPM project https://github.com/tlaplus/tlapm Its latest pre-release works also on my MacOS
+
+69.
+Just a FYI -- TCP has a TLA+ specification and a TLAPS ie a TLA+ proof system
+https://lnkd.in/es9Fz3aX
+Long weekend ahead and want to take a break from AI?
+
+The TLA+ Proof System tutorial starts here https://lnkd.in/eiwhQEWW
+
+Before that you should read about hierarchical proofs (Lamport):
+How to Write a Proof
+How to Write a 21st Century Proof
+then
+Verifying Safety Properties With the TLA+ Proof System (S. Merz et al)
+
+(more at https://lnkd.in/eR2WPyRA thanks Markus Kuppe)
+
+70.
+Worried LLMs make you think less? Take the TLA+ challenge and you can think more. No more worries :-)
+
+Warning: TLA+ will change the way you code and you will have less bugs to fix.
+
+Check slides and talk of Thinking in TLA+ – Modeling Judgment for System Design at 
+Article: https://conf.tlapl.us/2026-etaps/
+
+71.
+To write correct concurrent code, the code had better be specifiable.
+ 
+To keep a specification synchronized with a concurrent implementation, the code must be written to be specifiable: each operation should map to one specification step.
+ 
+Verifying the mapping (that a specification action matches its code) remains a human judgment.
+
+Tools can help. Code fully driven by Claude given its spec. See Lamport's Specifying Systems for the FIFO example: 
+
+https://github.com/tlaplus/Examples/blob/master/specifications/SpecifyingSystems/FIFO/Channel.tla
+
+Comment TLA+ for better reach.
+Image: 1779887716133.jpeg
+
+72.
+I was wrong. Do not abstract. 🤨 
+Abstraction, abstraction, abstraction. Leslie Lamport was right... for him. 😇 Abstraction is good for inventing new systems. Think Paxos.
+But consensus is not what developers do on a daily basis. 
+They apply algorithms to new human problems or new business ideas, and express that in code.
+For that, you do not need abstraction. You need specification for code verification.
+Do not abstract. Specify and code, code and specify. Just read it twice: the code and the spec should be in sync.
+[FYI: Java and TLA+ are almost the same age on the market.]
+hashtag#TLAplus
+
+73.
+How to build Google-like safe&smart software systems, sleep well, and render yourself (as a software engineer) “useless”: four hashtag#tlaplus design principles to sync your system code with: 1. simple state machines (SM), 2. concurrent SM, 3. distributed SM, 4. parallel SM. Lamport’s TLA+ inspire the new software engineering generation. AI helps shrink 10 years of systems work into few when the 4 SM get applied properly.
+
+74.
+Is your logic mathematically verified through TLA+?
+Do you spend 80% of your time on design correctness?
+Does AI synthesize the testing and infrastructure for your review?
+Image: 1775031084107.jpeg
+
+75.
+Time to rethink your time spent on design patterns for new code. AI is way better than you. Your product is now your set of formal specs. Think TLA+, Lean, etc.
+And what about existing repos? Can we sync them to formal specs ? and let new design patterns emerge from code and specs co-designed, co-developed?
+
+76.
+How do you confidently fix a concurrency bug in glibc that went undetected for years and broke .NET, Python, and OCaml? You use TLA+.
+
+At C++Now 2025, Malte Skarupke shared a many-years story of fixing rare lost-wakeup bug in glibc.
+
+My main takeaway:
+
+The upfront effort to learn and write TLA+ is not negligible -- syntax is easier now with LLMs, but the abstraction thinking is the long term challenge. However, the source code it tests is similarly complex. Any critical, complex protocol fundamentally requires a design specification to verify its correctness. But the real challenge we face as an industry is operational: How do we keep the code and the spec in sync over the long term?
+
+Links to the full story, Malte's blogs, and the GitHub TLA+ repos are in the comments below! 👇 (thanks claude for source code search)
+Using TLA+ to Fix a Very Difficult glibc Bug - Malte Skarupke - C++Now 2025
+https://www.youtube.com/watch?v=Brgfp7_OP2c
+
+Using TLA+ in the Real World to Understand a Glibc Bug
+by Malte Skarupke
+https://probablydance.com/2020/10/31/using-tla-in-the-real-world-to-understand-a-glibc-bug/
+
+Finding the “Second Bug” in glibc’s Condition Variable
+by Malte Skarupke
+https://probablydance.com/2022/09/17/finding-the-second-bug-in-glibcs-condition-variable/
+
+TLA+ source
+https://github.com/skarupke/glibc_tla_plus
+https://github.com/skarupke/glibc_cv_tla_plus/tree/main
+
+77.
+Necessary but not sufficient. Seniors are experienced coders and « from-memory » testers. Specifiers and verifiers are rare.
+
+« Only an engineer familiar with synchronization protocols, the synchronization primitives in use, and the architecture of the code can have the confidence to point out the agent’s mistakes and have the insights necessary to guide it in a correct direction. »
+
+« How do you train someone to verify work in fields they haven't mastered, when the AI itself prevents them from developing mastery? »
+
+Juniors should seek formal methods education. Most seniors too. Focus on the right usage of coding language syntax is not that hot anymore. hashtag#tlaplus
+
+78.
+AI is accelerating formal methods. The world runs better on verified systems. For one year, two hours a month, I have been sharing about TLA+ for free on LinkedIn. Nothing fancy. Just a quiet belief that formal thinking is better for the planet, better for the industry. 26,000+ thinkers are paying attention. Let AI translate the syntax. You focus on the thinking. The time to design then implement with precision is now. hashtag#tlaplus
+
+79.
+Most security bugs aren't bugs in a single execution. They're bugs across executions. Intro to a paper that won the NSA's 2022 Best Scientific Cybersecurity Paper award:
+
+A system can look perfectly correct run by run -- and still leak secrets. That's because many security properties are !hyperproperties!: they describe relationships between multiple runs of a system, not just one.
+
+("An ordinary property is a predicate on system executions; a hyperproperty is a predicate on sets of executions. Hyperproperties have been used to express security conditions--usually ones that forbid information leaks.")
+
+"Does observing public outputs reveal anything about secret inputs?" You can't answer that by examining one execution. You need two.
+
+Leslie Lamport and Fred Schneider showed that TLA+ can verify this entire class of security conditions directly.
+
+"Little is like Tiny, except instead of performing one Sec step between every
+two Pub steps, Little can perform any number (including 0)."
+
+More (and specs) at Verifying Hyperproperties with TLA, Lamport's pubs.
+
+hashtag#tlaplusAdvanced
+
+80.
+Underspecification and refinement will be harder for Veil/Lean, Unchanged in TLA+ is on most simple specs annoying - LLMs can help, better is a future support from IDE to « fill unchanged ».
+
+Fascinated by tradeoffs Veil/TLA+, these are awesome.
+
+Specification debt accumulates at the frame boundary.
+Every variable in your system that an action does not explicitly govern must be assigned to exactly one of two categories: preserved or unconstrained. Whichever is your default, the other requires active thought.
+
+The frame boundary is the line between:
+
+Variables an action explicitly governs (what the action "owns")
+Variables an action does not mention (what falls outside its scope)
+
+hashtag#tlaPlus101
+Image: 1772617449606.jpeg
+
+81.
+Veil/Lean4 /\ TLA+ (and not versus) two-tool
+
+Types are a little bizarre when writing specs, but one can understand when sets are difficult. Veil is more Verbose, yes: but who cares?
+ 
+You write TLA+ and can then LLM-translate to Veil when you find your needs for a proof once your inductive invariant is discovered. I like that UNCHANGED got away along with a better EXCEPT. However, current/next value of variable and thinking about state machines is natural in everything is a set TLA+ and less visible in Veil. 
+
+I think one can get much more productive work with TLA+ and its model checking; you can obtain, I guess, similar safety support with Veil/Lean4. 
+
+A TLA+ to Veil translation (for now via LLM) would be interesting.
+
+82.
+Formal Specifications are infinite. Verification is finite. Keep them separate.
+hashtag#tlaPlus101
+In TLA+, specs naturally use infinite objects — all sequences, all natural numbers. Model Checking needs everything finite.
+
+The tempting shortcut? Hardcode bounds into the spec. But then your spec describes your computer's memory, not your system.
+
+TLA+ offers a cleaner way — three layers:
+
+𝗟𝗮𝘆𝗲𝗿 𝟭: 𝗦𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 (Simple.tla)
+Pure mathematics. Uses Seq, Nat, STRING freely. Valid for theorem proving (TLAPS). No compromises. Expresses the full, infinite intent of the system.
+
+𝗟𝗮𝘆𝗲𝗿 𝟮: 𝗠𝗖 𝗔𝗱𝗮𝗽𝘁𝗲𝗿 (MCSimple.tla)
+Defines finite approximations:
+→ MCSeq(S) == BoundedSeq(S, 3)
+→ MCNat == 0..10
+Contains NO specification logic.
+
+𝗟𝗮𝘆𝗲𝗿 𝟯: 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 (MCSimple.cfg)
+Wires approximations to the spec:
+→ Seq ← MCSeq
+→ Nat ← MCNat
+Also sets INVARIANT, PROPERTY, CONSTANTS.
+
+The spec is never touched. Bugs found are real bugs. Absence of bugs is verified up to your chosen bound.
+
+hashtag#TLAplus hashtag#FormalMethods hashtag#SoftwareEngineering hashtag#ModelChecking hashtag#SystemDesign
+
+83.
+Update (25/02): Bonus+ 1001 interactions unlock 101 system design abstraction principles in TLA+.
+
+Some thoughts:
+• Lean works for Lean, but TLA+ works for C, C++, Rust, Java, Python, Go...
+
+Claim: Composition, refinement, simple state machines, TLA+, and AI-assisted coding will transform today's system coders into system specifiers.
+
+TLA+ 101 prelude:
+
+1. The System is a State Machine. Abstract a system component into exactly three things: what is initially true, what can change, and what must remain unchanged.
+
+2. Safety is "Bad things don't happen". Abstract your correctness requirements into predicates evaluated on individual states.
+
+3. Abstraction is Omission. If a variable doesn't affect the core logic you are verifying, it doesn't exist. Explicitly declare what doesn't change in a step.
+
+4. Stuttering Invariance: A valid abstraction must allow for steps where the state does not change, representing steps of the environment or lower-level unobservable operations.
+
+5. Types are Sets, Not Memory Layouts: Do not abstract data types as `int32` or `pointers`. Abstract them as mathematical sets. Every spec uses TypeOK as a set-membership predicate.
+
+6. Next is a Relation, Not an Assignment: Abstract execution as a logical relationship between the "current state" and the "next state", not an imperative command.
+
+(Old post below)
+Help me unlock a FREE Sunday 4 hours TLA+ tutorial for the community! 🔓
+
+Unfortunately, our feeds are drowning in useless AI posts. Present AIs are weak on state machines and abstraction. If we want correctness and understanding to remain hard requirements -- and not risk ending up with poisoned apples -- we need to focus on real engineering.
+
+Leslie Lamport summed up the core problem of formal methods perfectly:
+
+"The hardest part of writing a specification is choosing the proper abstraction.
+I can teach you about TLA+, so expressing an abstract view of a system as a
+TLA+ specification becomes a straightforward task. But I don't know how to
+teach you about abstraction. A good engineer knows how to abstract the essence of a system and suppress the unimportant details when specifying and designing it. The art of abstraction is learned only through experience.
+When writing a specification, you must first choose the abstraction. In a
+TLA+ specification, this means choosing the variables that represent the system's state and the granularity of the steps that change those variables' values."
+
+You cannot prompt an LLM to do this for you. You need human intuition, math, and experience. I want to help junior specifiers accelerate that experience.
+
+The Deal:
+When this post hits 1.001 total interactions (likes, comments, or reposts), I will host a FREE half-day tutorial on "How to Succeed with TLA+: Abstraction, Abstraction, Abstraction."
+
+Hit like, tag an engineer who needs this in the comments, or repost to your network! ♻️
+
+hashtag#TLAPlus hashtag#FormalMethods hashtag#SoftwareEngineering hashtag#SystemDesign hashtag#DistributedSystems
+
+84.
+HERE BE DRAGONS! Good luck.
+
+TLA+ Standard & Community Modules Reference 
+
+The TLA+ standard library ships with tla2tools.jar and provides the foundational mathematical building blocks: numbers, sets, sequences, and the model-checker interface. The community modules (CommunityModules-deps.jar) extend these with graph theory, combinatorics, folds, I/O utilities, visualization, and more.
+
+ Part I — TLA+ Standard Library (12 modules)
+
+1. Naturals
+
+2. Integers
+
+3. Reals
+
+4. Sequences
+
+5. FiniteSets
+
+6. Bags
+
+7. TLC
+
+8. TLCExt
+
+9. Randomization
+
+10. RealTime
+
+11. Json
+
+12. Toolbox
+
+Part II — TLA+ Community Modules (21 modules)
+
+13. Folds
+
+14. Functions
+
+15. Relation
+
+16. FiniteSetsExt
+
+17. SequencesExt
+
+18. BagsExt
+
+19. Graphs
+
+20. UndirectedGraphs
+
+21. GraphViz
+
+22. Bitwise
+
+23. Combinatorics
+
+24. CSV
+
+25. DifferentialEquations
+
+26. DyadicRationals
+
+27. HTML
+
+28. IOUtils
+
+29. Json
+
+30. SVG
+
+31. ShiViz
+
+32. Statistics
+
+33. VectorClocks
+
+All 33 modules in one file.
+
+Pretty-printed PDF via tlatex: tla2tools_CommunityModules2.pdf
+
+hashtag#TLAplus hashtag#FormalMethods hashtag#FormalVerification hashtag#DistributedSystems hashtag#ModelChecking
+
+Paper: 1771942422385.pdf
+
+85.
+[Writing & Reading] Math was 10x harder before ChatGPT.
+
+With the following, I rest my case regarding my advocacy for TLA+.
+
+What can help harden your system thinking?
+
+1. Your curiosity and understanding state machines.
+2. The desire to strengthen your math reading skills (the PlusCal alternative is a viable tool).
+3. AI tools; and I recommend using them without hesitation.
+
+My experience is the following:
+
+Once you find your rhythm and get used to reading snippets of TLA+ specs, you are the architect of your system; the AI tools are just there to speed up your spec writing.
+
+And do not forget about the wonderful and humble open source community that we have around TLA+.
+
+86.
+"Vibecoding" was the word of 2025.
+
+"Hardening" should be the invisible one of 2026. 
+
+TLA+ is the "Design Mode" of hardening the thinking.
+
+Safe system hardening requires a two-phase commitment:
+
+Harden the Design.
+ Lamport’s TLA+ models systems as state machines, strictly verifying behaviors against safety invariants.
+
+Harden the Build.
+ libc++ e.g. Fast Mode enforces a set of security-critical preconditions, preventing undefined behavior with minimal overhead.
+
+Safety is the new performance metric. Don't just vibe check your architecture. Trace validate it.
+https://libcxx.llvm.org/Hardening.html
+
+87.
+Most AI posts/works are confusing. Here’s why:
+
+They treat the first draft as the final product. But in resilient&deterministic systems, the workflow is different:
+
+Research # Engineering
+Research builds prototypes.
+
+You don't throw away the prototype because it failed. You throw it away because it succeeded. It taught you how to build the legacy.
+
+AI helps explore the solution space so you can rapidly uncover the right safety invariants and temporal properties.
+
+Then, you rewrite. Now, Safety and Liveness are clear. hashtag#tlaplus
+
+88.
+From Creative Chaos To TLA+ Order: There Is Only One hashtag#tlaplus
+image: 1763841901816.jpeg
+
+89.
+Leslie Lamport's famous paper, "The Part-Time Parliament"...
+
+...waited 9 years for publication.
+
+Perhaps this experience is the best argument for his later creation, TLA+.
+
+It suggests that even the most brilliant prose
+can struggle to convey the intricacies of a concurrent algorithm
+without ambiguity.
+
+90.
+TLA+ requires the same mental preparation as a sports and nutrition program. 
+
+Unfortunately, it is rarely taught in school. 
+
+So here are a few first steps to help you along the way:
+
+1. Get small, consistent wins. You need to follow some examples to get your first wins. Go for Lamport's videos.
+
+2. Master the basics. The mental context-switch for typing ASCII TLA+ symbols is a killer. Check my CTRL+ shortcuts for the most used symbols in TLA+ examples.
+
+3. Keep a schedule. You need a schedule and to keep working on it.
+
+4. Master core concepts. You must master the concepts of boolean algebra, replicated state machines and consensus, as they are crucial for understanding abstraction (see my examples).
+
+5. Leverage the community. Some sprints are fine from time to time, but it's best to have access to a professional. 
+
+Leverage the TLA+ community.
+
+All the best,
+
+Let me know how it goes.
+
+Image: 1762953981019.jpeg
+
+91.
+Here's the ONE algorithm specified in TLA+ that you should look at: the distributed mutual exclusion algorithm from Lamport's time clocks paper. 
+
+https://lnkd.in/e7DGDsfb
+
+Amazed by the hashtag#TLAPlus community efforts to release and maintain such gems.
+Your document has finished loading
+Paper: 1762613232075.pdf
+
+92.
+Alone on the island of Paxos, you can be stranded for months or years .. or mere days/weeks, if you have a good guide with you. hashtag#TLAPlus
+
+Paxos island https://lnkd.in/eZA_B3vZ
+
+Paxos made simple https://lnkd.in/e4fjGfap
+
+The Paxos Algorithm or How to Win a Turing Award
+https://lnkd.in/eiAmwzct
+
+Fast Paxos https://lnkd.in/eZusfSym
+
+https://lnkd.in/egu7mz93
+
+https://lnkd.in/eHUKBWKi
+
+93.
+Happy to share that I am working hard on obtaining the Lamport-read-them-all certification :-)
+https://lamport.azurewebsites.net/pubs/pubs.html
+
+94.
+On trace validation challenges:
+
+Setting the right atomic boundaries is the most important aspect of trace validation.
+
+"Granularity of actions in the consensus spec should align with the granularity of events in the traces" @Smart casual verification 
+
+Potential issues:
+
+The model might permit behaviors the implementation can't produce.
+
+The model might fail to explain behaviors the implementation does produce.
+
+Smart Casual Verification of the Confidential Consortium Framework
+https://lnkd.in/er5UyDdh
+
+Model Checking Guided Testing for Distributed Systems
+https://lnkd.in/efxN8AEv
+
+95.
+My first encounter with the world of Lamport's TLA+ was in 2017 at an INRIA workshop, while I was a PhD student.
+
+« Thinking is hard.
+
+Why waste time and brainpower thinking about an algorithm
+if the model checker can tell you it’s wrong.
+
+Model check first, think later. »
+
+Paper: raynal_leslie_Lamport.pdf
+
+96.
+« A program can be regarded as an (abstract) mechanism embodying as such the design of all computations that can possibly be evoked by it. How do we convince ourselves that this design is correct, i.e. that all these computations will display the desired properties? A naive answer to this question is "Well, try them all.", but this answer is too naive, because even for a simple program on the fastest machine such an experiment is apt to take millions of years. So, exhaustive testing is absolutely out of the question. As a result, testing by random sampling is hopelessly inadequate as well, because even the most vigorous exercising possible will only cover a truly negligible fraction of the possible number of cases, and whole classes of in some sense critical cases can —and will!— be missed: only the most obvious blunders will show up. The first moral of this story is that program testing can be used very efficiently to show the presence of bugs, but never to show their absence. »
+https://www.cs.utexas.edu/~EWD/transcriptions/EWD02xx/EWD288.html
+
+97.
+TLA+ gets the green light for Safety-Critical Systems.
+
+TLC is a model checker for specifications written in TLA+. https://docs.tlapl.us/
+
+Disclaimer: Just a TLA+ enthusiast, not affiliated with the foundation.
+Image: 1759226758602.jpeg
+
+98.
+Chris Newcombe:
+
+TLA⁺ is the most valuable thing that I’ve learned in my professional career. It has changed how I work, by giving me an immensely powerful tool to find subtle flaws in system designs. It has changed how I think, by giving me a framework for constructing new kinds of mental-models, by revealing the precise relationship between correctness properties and system designs, and by allowing me to move from `plausible prose’ to precise statements much earlier in the software development process.
+
+99.
+Towards preparing for learning TLA+
+
+Principles of mathematical logic, Hilbert, Ackermann
+
+https://archive.org/details/principlesofmath0000hilb/page/5/mode/1up
+
+100.
+Here's a short tutorial in TLA+. 
+
+As an exercise, if you uncomment IF/ELSE you will fail your temporal property. :-)
+Image: 1755762288137.jpeg
+
+101.
+"Like almost all the programs we use, [Your Favorite Program] is completely bug-free—since a program can have bugs only if there is some specification of what it’s supposed to do." Leslie Lamport
+
+
+
