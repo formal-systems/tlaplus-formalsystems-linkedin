@@ -1,0 +1,19 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2025-2026 Ovidiu C. Marcu, Formal Systems
+
+The text of README.md and the original images in images/ and documents in
+material/ (tla-starter-kit.pdf, vcagents.pdf, leader-completeness-verdi-vs-tla.pdf)
+are licensed under the Creative Commons Attribution 4.0 International License.
+You are free to share and adapt this material for any purpose, provided you give
+appropriate credit, provide a link to the license, and indicate if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Exceptions:
+- material/LamportMutex.pdf and material/tla-modules-reference.pdf are pretty-printed
+  renderings of TLA+ sources from the tlaplus project (https://github.com/tlaplus),
+  distributed under the MIT License by their respective authors.
+- Quotations from third-party works remain the property of their authors and are
+  reproduced for commentary with attribution; linked papers and articles are not
+  redistributed here.
